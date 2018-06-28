@@ -194,13 +194,8 @@ def parse_xml(
         raise ValueError("{} is not a file".format(xml_path))
 
     try:
-        with open(xml_path) as file:
+        with open(xml_path, encoding="utf-8") as file:
             readed_file = file.read()
-            
-            #remove possible UTF-8 BOM
-            bomtest = readed_file.read(3)
-            if bomtest == codecs.BOM_UTF8:
-                readed_file = readed_file[3:]
 
             # Collapse these namespace
             namespaces = {v: k for k, v in six.iteritems(namespaces)}
