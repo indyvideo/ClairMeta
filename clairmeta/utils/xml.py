@@ -194,6 +194,7 @@ def parse_xml(
         raise ValueError("{} is not a file".format(xml_path))
 
     try:
+        #Added 'encoding='utf-8'' to open statement to correct for utf-8-with-BOM files
         with open(xml_path, encoding="utf-8") as file:
             readed_file = file.read()
 
