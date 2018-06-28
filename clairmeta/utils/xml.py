@@ -7,6 +7,7 @@ import io
 import re
 import six
 import xmltodict
+import codecs
 from lxml import etree
 from xml.dom.minidom import parseString
 from xml.parsers.expat import ExpatError
@@ -195,6 +196,11 @@ def parse_xml(
     try:
         with open(xml_path) as file:
             readed_file = file.read()
+            
+            #remove possible UTF-8 BOM
+            bomtest = readed_file.read(3)
+            if bomtest == codecs.BOM_UTF8:
+                readed_file = readed_file[3:]
 
             # Collapse these namespace
             namespaces = {v: k for k, v in six.iteritems(namespaces)}
