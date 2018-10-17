@@ -95,6 +95,7 @@ As a command line tool :
     python3 -m clairmeta.cli probe -type dcp path/to/dcp -format json > dcp.json
     python3 -m clairmeta.cli probe -type dcp path/to/dcp -format xml > dcp.xml
     python3 -m clairmeta.cli check -type dcp path/to/dcp
+    python3 -m clairmeta.cli check -type dcp path/to/dcp -progress
 
 As a python library :
 
@@ -109,6 +110,10 @@ As a python library :
     status, report = dcp.check()
     # Check DCP VF against OV
     status, report = dcp.check(ov_path="/path/to/dcp_ov")
+
+    # Check DCP with console progression report
+    from clairmeta.utils.file import console_progress_bar
+    status, report = dcp.check(hash_callback=console_progress_bar)
 
 Profiles
 ~~~~~~~~
@@ -205,9 +210,9 @@ The following sources / software were used :
 -  asdcp-lib : http://www.cinecert.com/asdcplib/
 -  sox : http://sox.sourceforge.net/
 -  mediainfo : https://mediaarea.net/
--  SMPTE Digital Cinema standards
--  Interop Digital Cinema specifications
--  Digital Cinema Initiative specifications
+-  SMPTE Digital Cinema standards : https://www.smpte.org/
+-  Interop Digital Cinema specifications : https://cinepedia.com/interop/
+-  Digital Cinema Initiative specifications : http://www.dcimovies.com/specification/index.html
 -  ISDCF Naming Convention : http://isdcf.com/dcnc/
 -  Texas Instrument Digital Cinema Subtitles specifications
 
